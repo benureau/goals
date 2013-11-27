@@ -35,7 +35,7 @@ class Meshgrid(object):
         self.size += 1
         nhood, center = self._nhood(p)
         for n_p in nhood:
-            d = toolbox.norm(p, self.res*np.array(n_p))
+            d = toolbox.dist(p, self.res*np.array(n_p))
             w = toolbox.gaussian_kernel(d, self.sigma*self.sigma)
             #print w
             self.nodes[n_p] = self.nodes.get(n_p, 0.0)*(1-w) + w*v
@@ -82,7 +82,7 @@ class Meshgrid(object):
                 for j in range(-4, 5):
                     neighborhood.append((int(center[0])+i, int(center[1])+j))
             for ng in neighborhood:
-                d = toolbox.norm(ng, center)
+                d = toolbox.dist(ng, center)
                 w = math.exp(-d*d/4)
                 heatmap[-ng[1]][ng[0]]   += w*c
                 weightmap[-ng[1]][ng[0]] += w

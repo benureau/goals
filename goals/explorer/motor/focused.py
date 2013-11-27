@@ -28,7 +28,7 @@ class FocusedMotorBabble(object):
         self.burst_order = None
         self.finished = False
 
-    def babble(self):
+    def babble(self, *args):
         if self.burst == 0:
             order = [random.uniform(mi_min, mi_max) for mi_min, mi_max in self.m_bounds]
             return pandas.Series(order, index = self.m_feats)

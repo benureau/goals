@@ -12,7 +12,7 @@ class MotorBabble(object):
         self.m_feats = m_feats
         self.m_bounds = m_bounds
 
-    def babble(self):
+    def babble(self, *args):
         rndpoint = [random.uniform(mi_min, mi_max) for mi_min, mi_max in self.m_bounds]
         return pandas.Series(rndpoint, index = self.m_feats)
 

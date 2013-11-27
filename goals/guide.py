@@ -58,24 +58,24 @@ class Guide(object):
             if self.cfg.effect.filter:
                 self.goalexplorer = effect.EffectFilter(self.goalexplorer, self.cfg.effect.filtered_values)
 
+        self.t = 0 # number of actions
+
     def next_action(self):
-        """The core of the guiding : here, just babbling for 10 trials,
-        and then 5 percent of the time
-        """
+        """The core of the guiding"""
 
         if not self.babble.finished or len(self.goalexplorer) < self.cfg.guide.min_orderbabble:
-            babbling = self.babble.babble()
+            babbling = self.babble.babble(self.t)
             action = Action(type = 'order', payload = babbling)
             path = 0
         else:
             if random.random() < self.cfg.guide.ratio_orderbabble:
-                babbling = self.babble.babble()
+                babbling = self.babble.babble(self.t)
                 action = Action(type = 'order', payload = babbling)
                 path = 1
             else:
                 goal = self.goalexplorer.next_goal()
                 if goal is None:
-                    babbling = self.babble.babble()
+                    babbling = self.babble.babble(self.t)
                     action = Action(type = 'order', payload = babbling)
                     path = 2
                 else:
@@ -91,6 +91,7 @@ class Guide(object):
         @param action  the action followed that produced result
         @param result  the result, as a pair (order, effect)
         """
+        self.t += 1
         pub.sendMessage('guide.feedback', guide = self, action = action, result = result)
 
         if action != self.latest:

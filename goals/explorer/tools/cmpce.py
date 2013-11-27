@@ -24,14 +24,14 @@ defaultcfg.cmpce.function_desc = 'the function used to measure competence. possi
 
 def competence_log(a, b, min_d, beta):
     """Return the competence as -log(d+1)"""
-    d = toolbox.norm(a, b)
+    d = toolbox.dist(a, b)
     if d <=  min_d:
         d = 0.0
     return -math.log((beta + d)/beta)
 
 def competence_ident(a, b, min_d):
     """Return the competence as d = b-a"""
-    d = toolbox.norm(a, b)
+    d = toolbox.dist(a, b)
     if d <=  min_d:
         d = 0.0
     return -d

@@ -158,6 +158,6 @@ class LichenExplorer(GoalExplorer):
                 i += 1
                 gen_goal  = ref_goal + spread*self.R*np.array([random.uniform(-1, 1) for _ in self.Sfeats])
                 nn_effect = self.effects.get(self.effects.nn(gen_goal, 1)[1][0])
-                if True or toolbox.norm(gen_goal, nn_effect) < spread*self.R:
+                if True or toolbox.dist(gen_goal, nn_effect) < spread*self.R:
                     return pandas.Series(gen_goal, index = self.Sfeats)
             raise ValueError("Too much tries")
