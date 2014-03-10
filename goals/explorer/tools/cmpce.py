@@ -4,23 +4,24 @@
 import math
 import numpy as np
 
-import treedict
+import forest
 
 import toolbox
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.cmpce.min_d     = 0.0
-defaultcfg.cmpce.min_d_desc = "minimum distance. below this value, we have perfect competence (= 0)."
+defcfg._branch('cmpce')
+defcfg.cmpce.min_d     = 0.0
+defcfg.cmpce.min_d_desc = "minimum distance. below this value, we have perfect competence (= 0)."
 
-defaultcfg.cmpce.exp_alpha = 2.0
-defaultcfg.cmpce.exp_alpha_desc = "alpha for exp competence, as in c = exp(-alpha*d)"
+defcfg.cmpce.exp_alpha = 2.0
+defcfg.cmpce.exp_alpha_desc = "alpha for exp competence, as in c = exp(-alpha*d)"
 
-defaultcfg.cmpce.log_beta  = 0.05
-defaultcfg.cmpce.log_beta_desc = "beta for log competence, as in c = log(beta + d)"
+defcfg.cmpce.log_beta  = 0.05
+defcfg.cmpce.log_beta_desc = "beta for log competence, as in c = log(beta + d)"
 
-defaultcfg.cmpce.function = 'log'
-defaultcfg.cmpce.function_desc = 'the function used to measure competence. possible values are log|exp|ident'
+defcfg.cmpce.function = 'log'
+defcfg.cmpce.function_desc = 'the function used to measure competence. possible values are log|exp|ident'
 
 def competence_log(a, b, min_d, beta):
     """Return the competence as -log(d+1)"""
@@ -43,7 +44,7 @@ def competence_exp(a, b, min_d, alpha):
 def competence(a, b, cfg):
     """Default competence"""
     assert len(a) == len(b)
-    cfg.update(defaultcfg, overwrite = False)
+    cfg._update(defcfg, overwrite = False)
 
     if cfg.cmpce.function == 'log':
         return competence_log(a, b, cfg.cmpce.min_d, cfg.cmpce.log_beta)

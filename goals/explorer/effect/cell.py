@@ -1,7 +1,7 @@
 import math
 import random
 
-import treedict
+import forest
 
 import toolbox
 
@@ -9,22 +9,23 @@ from ..tools import cmpce
 from cgoals import cSeigelEstimator as SpanSeigelEstimator
 #from ..tools.tseries import SpanSeigelEstimator
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.cell.min_cp  = 3
-defaultcfg.cell.min_cp_desc = "number of competence points necessary to compute the derivative (competence progress)"
+defcfg._branch('cell')
+defcfg.cell.min_cp  = 3
+defcfg.cell.min_cp_desc = "number of competence points necessary to compute the derivative (competence progress)"
 
-defaultcfg.cell.min_pei = 3
-defaultcfg.cell.min_pei_desc = "number of effect points necessary to compute the derivative (prediction error improvement)"
+defcfg.cell.min_pei = 3
+defcfg.cell.min_pei_desc = "number of effect points necessary to compute the derivative (prediction error improvement)"
 
-defaultcfg.cell.max_cp  = 20
-defaultcfg.cell.max_pei = 20
+defcfg.cell.max_cp  = 20
+defcfg.cell.max_pei = 20
 
-defaultcfg.cell.threshold_cp  = 0.02
-defaultcfg.cell.threshold_pei = 0.02
+defcfg.cell.threshold_cp  = 0.02
+defcfg.cell.threshold_pei = 0.02
 
-defaultcfg.cell.factor_cp  = True
-defaultcfg.cell.factor_pei = False
+defcfg.cell.factor_cp  = True
+defcfg.cell.factor_pei = False
 
 
 class DualCell(object):
@@ -137,7 +138,7 @@ class Cell(object):
         self.effects     = []
 
         self.cfg       = cfg
-        cfg.update(defaultcfg, overwrite = False)
+        cfg._update(defcfg, overwrite = False)
 
     # def exploration_interest(self):
     #     """ Return how interesting is it to create a goal in a new, unknown area.

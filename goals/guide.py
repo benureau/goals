@@ -11,16 +11,16 @@ from explorer import effect
 
 Action = namedtuple('Action', ['type', 'payload'])
 
-import treedict
+import forest
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.motor.explorer  = motor.MotorBabble
-defaultcfg.effect.explorer = effect.RandomExplorer
-defaultcfg.effect.filter   = False
+defcfg['motor.explorer']  = motor.MotorBabble
+defcfg['effect.explorer'] = effect.RandomExplorer
+defcfg['effect.filter']   = False
 
-defaultcfg.guide.min_orderbabble   = 10
-defaultcfg.guide.ratio_orderbabble = 0.05
+defcfg['guide.min_orderbabble']   = 10
+defcfg['guide.ratio_orderbabble'] = 0.05
 
 class Guide(object):
 
@@ -44,7 +44,7 @@ class Guide(object):
         self.datalog = datalog.DataLog(self)
 
         self.cfg = cfg
-        self.cfg.update(defaultcfg, overwrite = False, protect_structure = True)
+        self.cfg._update(defcfg, overwrite = False)
 
         if motorbabble is not None:
             self.babble = motorbabble

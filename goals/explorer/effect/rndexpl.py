@@ -1,6 +1,6 @@
 import random
 
-import treedict
+import forest
 import pandas
 
 from toolbox import gfx
@@ -37,20 +37,22 @@ class RandomExplorer(EffectExplorer):
                                    for extmin, extmax in self.extremum)
 
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.effect.s_bounds = None
-defaultcfg.effect.s_bounds = "the bounds of the sensory features"
+defcfg['effect.s_bounds'] = None
+defcfg['effect.s_bounds_desc'] = "the bounds of the sensory features"
 
 class BoundedRandomExplorer(RandomExplorer):
 
-    def __init__(self, s_feats, cfg = defaultcfg):
+    def __init__(self, s_feats, cfg = None):
         self.dim = len(s_feats)
         self.s_feats   = s_feats
         self.size = 0
-        cfg.update(defaultcfg, overwrite = False)
+        if cfg is None:
+            cfg = forest.Tree()
+        cfg._update(defcfg, overwrite = False)
 
-        if cfg.effect.get('s_bounds', None) is None:
+        if cfg.effect._get('s_bounds', None) is None:
             print "You must define the cfg.s_bounds parameter for BoundedRandomExplorer"
         assert len(cfg.effect.s_bounds) == self.dim, "{}cfg.s_bounds doesn't have the correct dimension; got {}, expected {}{}".format(gfx.red, len(cfg.effect.s_bounds), self.dim, gfx.end)
         self.bounds = cfg.effect.s_bounds

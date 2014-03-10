@@ -1,7 +1,7 @@
 import random
 
 from pubsub import pub
-import treedict
+import forest
 
 import toolbox
 from toolbox import gfx
@@ -9,22 +9,22 @@ from toolbox import gfx
 import explorer
 import cell
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.effect.s_res = 10
-defaultcfg.effect.s_res_desc = "Number of row for each feature in the grid."
+defcfg['effect.s_res'] = 10
+defcfg['effect.s_res_desc'] = "Number of row for each feature in the grid."
 
-defaultcfg.effect.random_explo = 0.05
-defaultcfg.effect.random_explo_desc = "Percentage of random exploration"
+defcfg['effect.random_explo'] = 0.05
+defcfg['effect.random_explo_desc'] = "Percentage of random exploration"
 
-defaultcfg.effect.unknown_explo = 0.10
-defaultcfg.effect.unknown_explo_desc = "Percentage of unknown areas exploration"
+defcfg['effect.unknown_explo'] = 0.10
+defcfg['effect.unknown_explo_desc'] = "Percentage of unknown areas exploration"
 
-defaultcfg.effect.sample_size = 3
-defaultcfg.effect.sample_size_desc = "how many goal to pick per region at minimum regardless of the interest measure"
+defcfg['effect.sample_size'] = 3
+defcfg['effect.sample_size_desc'] = "how many goal to pick per region at minimum regardless of the interest measure"
 
-defaultcfg.effect.s_bounds = None
-defaultcfg.effect.s_bounds_desc = "the limit of the sensory features"
+defcfg['effect.s_bounds'] = None
+defcfg['effect.s_bounds_desc'] = "the limit of the sensory features"
 
 
 class GridExplorer(explorer.CellEffectExplorer):
@@ -48,12 +48,12 @@ class GridExplorer(explorer.CellEffectExplorer):
         self.dim = len(s_feats)
         self.s_feats = s_feats
 
-        assert cfg.effect.get('s_bounds', None) != None, "{}you must define the s_bounds parameter for GridExplorer{}".format(gfx.red, gfx.end)
+        assert cfg.effect._get('s_bounds', None) != None, "{}you must define the s_bounds parameter for GridExplorer{}".format(gfx.red, gfx.end)
         assert len(cfg.effect.s_bounds) == self.dim
         self.bounds = cfg.effect.s_bounds
 
         self.cfg = cfg
-        self.cfg.update(defaultcfg, overwrite = False)
+        self.cfg._update(defcfg, overwrite = False)
 
         if type(cfg.effect.s_res) == int:
             self.s_res = [cfg.effect.s_res]*self.dim
