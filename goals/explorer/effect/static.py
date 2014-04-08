@@ -6,17 +6,17 @@ A possible setup is to use a random explorer to decide the next random goal,
 and multiple static explorer to analyse how the rates the interestingness of
 the space, depending on the partition.
 """
-import treedict
+import forest
 
 import toolbox
 
 from explorer import CellEffectExplorer
 from cell import DualCell
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.s_areas = None
-defaultcfg.s_areas = "the list of areas to consider when tracking interest"
+defcfg.s_areas = None
+defcfg.s_areas = "the list of areas to consider when tracking interest"
 
 class StaticExplorer(CellEffectExplorer):
 
@@ -32,7 +32,7 @@ class StaticExplorer(CellEffectExplorer):
         self.s_feats = tuple(s_feats)
 
         if cfg.get('s_areas', None) is None:
-            print "You must define the s_areas config parameter for GridExplorer"
+            print("You must define the s_areas config parameter for GridExplorer")
         self.cells = [DualCell(bounds, self, uid, depth = 0, w = None, cfg = cfg) for uid, bounds in enumerate(cfg.s_areas)]
 
         self.active_cells = set()

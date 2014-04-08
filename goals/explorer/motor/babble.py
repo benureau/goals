@@ -3,21 +3,21 @@
 import random
 
 import pandas
-import treedict
+import forest
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
 class MotorBabble(object):
 
-    defaultcfg = defaultcfg
+    defcfg = defcfg
 
     @classmethod
-    def from_robot(cls, robot, cfg = defaultcfg):
+    def from_robot(cls, robot, cfg = defcfg):
         """Create a babbler from a robot instance"""
         cfg.m_bounds = robot.m_bounds
         return cls(robot.m_feats, cfg = cfg)
 
-    def __init__(self, m_feats, m_bounds, cfg = defaultcfg):
+    def __init__(self, m_feats, m_bounds, cfg = defcfg):
         self.m_feats = m_feats
         self.m_bounds = m_bounds
         self.cfg = cfg

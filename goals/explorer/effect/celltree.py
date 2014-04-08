@@ -1,9 +1,9 @@
-import treedict
+import forest
 
 from ..tools.splittree import SplitTree
 from cell import DualCell
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
 class CellTree(object):
     """Class instanciating cells around a SplitTree"""

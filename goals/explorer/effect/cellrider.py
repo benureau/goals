@@ -1,37 +1,35 @@
-
+from __future__ import print_function, division
+import numbers
+import collections
 import random
 
-import treedict
-
+import forest
 import toolbox
 
 from celltree import CellTree
 
-defaultcfg = treedict.TreeDict()
+defcfg = forest.Tree()
 
-defaultcfg.effect.random_explo = 0.05
-defaultcfg.effect.random_explo_desc = "Percentage of random goal exploration"
+defcfg._describe('effect.random_explo', instanceof=numbers.Real,
+                 docstring='Percentage (between 0.0 and 1.0) of random goal exploration')
 
-defaultcfg.effect.unknown_explo = 0.10
-defaultcfg.effect.unknown_explo_desc = "Percentage of exploration of areas with no goal but effect"
+defcfg._describe('effect.unknown_explo', instanceof=numbers.Real,
+                 docstring='Percentage (between 0.0 and 1.0) of exploration of areas with effect but no goal')
 
-defaultcfg.effect.sample_size = 3
-defaultcfg.effect.sample_size_desc = "how many goal to pick per region at minimum regardless of the interest measure"
+defcfg._describe('effect.sample_size', instanceof=numbers.Integral,
+                 docstring='How many goals to pick per region at minimum regardless of the interest measure')
 
-defaultcfg.effect.s_bounds = None
-defaultcfg.effect.s_bounds = "the limit of the sensory features"
+defcfg._describe('effect.s_bounds', instanceof=collections.Iterable,
+                 docstring='The min/max bounds of each sensory features')
 
-defaultcfg.effect.crit_size = 10
-defaultcfg.effect.crit_size_desc = "size at which a cell splits"
-
-# defaultcfg.weight_vector = None
-# defaultcfg.weight_vector_desc = "size at which a cell splits"
+defcfg._describe('effect.crit_size', instanceof=numbers.Integral,
+                 docstring='Size at which a cell splits')
 
 class CellRider(object):
 
     def __init__(self, cfg, w = None):
         self.cfg = cfg
-        self.cfg.update(defaultcfg, overwrite = False, protect_structure = True)
+        self.cfg.update(defcfg, overwrite = False, protect_structure = True)
 
         self.bounds = self.cfg.effect.s_bounds
         assert self.bounds is not None

@@ -53,6 +53,6 @@ def competence(a, b, cfg):
     elif cfg.cmpce.function == 'ident':
         return competence_ident(a, b, cfg.cmpce.min_d)
     else:
-        raise ValueError, "Unknown competence <{}>".format(cfg.cmpce.function)
+        raise ValueError("Unknown competence <{}>".format(cfg.cmpce.function))
 
     return competence_log(a, b)

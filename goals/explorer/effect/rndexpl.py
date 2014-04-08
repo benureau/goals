@@ -53,7 +53,7 @@ class BoundedRandomExplorer(RandomExplorer):
         cfg._update(defcfg, overwrite = False)
 
         if cfg.effect._get('s_bounds', None) is None:
-            print "You must define the cfg.s_bounds parameter for BoundedRandomExplorer"
+            print("You must define the cfg.s_bounds parameter for BoundedRandomExplorer")
         assert len(cfg.effect.s_bounds) == self.dim, "{}cfg.s_bounds doesn't have the correct dimension; got {}, expected {}{}".format(gfx.red, len(cfg.effect.s_bounds), self.dim, gfx.end)
         self.bounds = cfg.effect.s_bounds
 
