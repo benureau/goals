@@ -2,14 +2,14 @@ import testenv
 
 import random, sys, time
 
-import treedict
+import forest
 
 from goals.explorer import datalog
 from goals.explorer.effect import cellrider
 import goals.gfx.cellrider_gfx as cellrider_gfx
 import goals.gfx.render as render
 
-cfg = treedict.TreeDict()
+cfg = forest.Tree()
 cfg.s_bounds = ((0, 1), (0, 1))
 cfg.crit_size = 10
 

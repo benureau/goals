@@ -2,14 +2,14 @@ import testenv
 
 import random, sys
 
-import treedict
+import forest
 
 from goals.explorer import datalog
 from goals.explorer.effect import grid
 import goals.gfx.gridexpl_gfx as gridexplorer_gfx
 import goals.gfx.render as render
 
-cfg = treedict.TreeDict()
+cfg = forest.Tree()
 cfg.s_bounds = ((0, 1), (0, 1))
 cfg.s_res    = (10, 10)
 

@@ -1,5 +1,5 @@
 import testenv
-import treedict
+import forest
 
 from goals.explorer.tools import cmpce
 
@@ -7,7 +7,7 @@ def test1():
     """Test basic method of competence"""
     check = True
 
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
 
     cfg.cmpce.min_d     = 0.01
     cfg.cmpce.function  = 'ident'

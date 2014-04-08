@@ -1,14 +1,14 @@
 import testenv
 import random
 
-import treedict
+import forest
 
 from goals.explorer.effect import celltree
 
 def test1():
     """Test basic method"""
     bounds = ((-1.0, 1.0), (-1.0, 1.0))
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     ct = celltree.CellTree(bounds, 5, cfg)
 
     for i in xrange(100):

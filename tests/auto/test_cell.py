@@ -1,7 +1,7 @@
 import testenv
 
 import random
-import treedict
+import forest
 
 import goals.explorer.effect.cell as cell
 from goals.gfx import cell_gfx
@@ -9,7 +9,7 @@ from goals.gfx import cell_gfx
 
 def test1():
     """Check basic cell behavior"""
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
 
     dcell = cell.DualCell(((-100.0, 100.0),), None, None, cfg, w = [1.0])
 

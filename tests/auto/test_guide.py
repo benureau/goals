@@ -1,13 +1,13 @@
 import testenv
 
-import treedict
+import forest
 
 from goals import guide
 from goals.explorer import effect
 
 def test1():
     """Basic instanciation of Guide"""
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     g = guide.Guide((-1,), (1,), ((-10.0, 10.0),), cfg)
 
     def f(x):
@@ -23,7 +23,7 @@ def test1():
 def test2():
     """Basic instanciation of Guide with a GridExplorer"""
 
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     cfg.effect.s_bounds = ((-64, 64),)
     cfg.effect.s_res    = (25,)
 

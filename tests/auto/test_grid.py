@@ -2,14 +2,14 @@ import testenv
 
 import random, sys
 
-import treedict
+import forest
 
 from goals.explorer.effect import grid
 
 def test1():
     """Test basic methods of gridexplorer"""
 
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     cfg.effect.s_bounds = ((0.0, 1.0), (0.0, 1.0))
 
     ge = grid.GridExplorer((0, 1), cfg = cfg)

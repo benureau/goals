@@ -1,6 +1,6 @@
 import testenv
 
-import treedict
+import forest
 
 from goals.explorer.effect.static import StaticExplorer
 
@@ -8,7 +8,7 @@ from goals.explorer.effect.static import StaticExplorer
 def test1():
     """Basic instanciation of StaticExplorer"""
 
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     cfg.s_areas = (((-1, 1), (0, 10)),)
 
     se = StaticExplorer((0, 1), cfg = cfg)

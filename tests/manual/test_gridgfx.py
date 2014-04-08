@@ -3,11 +3,11 @@ import testenv
 import random
 import time
 
-import treedict
+import forest
 
 import goals.explorer.effect.grid as grid
 
-cfg = treedict.TreeDict()
+cfg = forest.Tree()
 cfg.s_bounds = ((0.0, 2.0), (0.0, 2.0))
 cfg.s_res    = (10, 10)
 ge = grid.GridExplorer((1,2), cfg = cfg)

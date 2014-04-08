@@ -1,6 +1,6 @@
 import testenv
 
-import treedict
+import forest
 
 from goals import guide
 from goals.explorer import effect
@@ -8,7 +8,7 @@ from goals.explorer import effect
 def test_config():
     """Test that configuration is not changed"""
 
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     cfg.effect.s_bounds = ((-64, 64),)
     cfg.effect.s_res    = (25,)
 

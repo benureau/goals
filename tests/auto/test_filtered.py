@@ -1,12 +1,12 @@
 import testenv
-import treedict
+import forest
 
 from goals.explorer import effect
 
 def test_belongs():
     """Test if filtered values are correctly recognized"""
 
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     cfg.effect.s_bounds = ((-1.0, 1.0),)
     cfg.effect.s_res    = (10,)
     goalexplorer = effect.GridExplorer((1.0,), cfg = cfg)

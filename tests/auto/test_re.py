@@ -1,6 +1,6 @@
 import testenv
 
-import treedict
+import forest
 
 import goals
 from goals.explorer.effect.rndexpl import BoundedRandomExplorer
@@ -8,7 +8,7 @@ from goals.explorer.effect.rndexpl import BoundedRandomExplorer
 
 def test1():
     """Basic instanciation of BoundedRandomExplorer"""
-    cfg = treedict.TreeDict()
+    cfg = forest.Tree()
     cfg.effect.s_bounds = ((-1, 1), (0, 10))
 
     bre = BoundedRandomExplorer((0, 1), cfg = cfg)
